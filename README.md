@@ -2,7 +2,7 @@
 
 **From idea to production-ready platform using Bolt.new and Claude AI collaboration**
 
-> 🌟 **Live Application**: [SideSparkle](https://your-demo-url.netlify.app) - *LinkedIn for side project collaboration*  
+> 🌟 **Live Application**: [SideSparkle](https://jocular-melomakarona-32661e.netlify.app/) - *LinkedIn for side project collaboration*  
 > 💻 **Source Code**: [github.com/xwjatgi/sidesparkle](https://github.com/xwjatgi/sidesparkle)
 
 ## 📊 **Project Overview**
