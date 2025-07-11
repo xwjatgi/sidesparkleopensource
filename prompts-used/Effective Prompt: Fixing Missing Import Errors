@@ -1,0 +1,176 @@
+# Effective Prompt: Fixing Missing Import Errors
+
+**A real example of debugging AI-generated code with specific, targeted prompts**
+
+## 🎯 **The Problem**
+
+During SideSparkle development, the chat system would randomly crash with `useAuth is not defined` errors. This happened because Bolt.new created components that referenced hooks without importing them.
+
+**Error Message:**
+```
+Uncaught ReferenceError: useAuth is not defined
+at ActiveChatPanel (src/components/chat/ActiveChatPanel.tsx:23:57)
+```
+
+## 🛠️ **The Effective Prompt**
+
+### **❌ What Doesn't Work:**
+```
+"Fix the error in my chat component"
+"There's a bug in ActiveChatPanel"
+"useAuth is not working"
+```
+
+### **✅ What Works:**
+```
+Fix the missing useAuth import error in the ActiveChatPanel component:
+
+**Problem:** `useAuth is not defined` error in ActiveChatPanel.tsx
+
+**Fix needed:**
+
+1. **Add missing import in `src/components/chat/ActiveChatPanel.tsx`:**
+```typescript
+// Add this import at the top of the file:
+import { useAuth } from '../../contexts/AuthContext';
+```
+
+2. **Check all chat components for missing imports:**
+   - `src/components/chat/ActiveChatPanel.tsx` - Add useAuth import
+   - `src/components/chat/ChatSystem.tsx` - Verify all imports exist
+   - `src/components/chat/CollapsedChatBar.tsx` - Check imports
+   - `src/components/chat/MessageListPanel.tsx` - Verify imports
+
+3. **Common import pattern for chat components:**
+```typescript
+import React from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import { useChat } from '../../contexts/ChatContext';
+// ... other imports
+```
+
+4. **Verify the useAuth hook is being used correctly:**
+```typescript
+const { user } = useAuth();
+// Make sure 'user' is actually used in the component
+```
+
+**Priority:** Fix the import immediately so the app stops crashing.
+```
+
+## 📊 **Results**
+
+**Time to Fix:**
+- ❌ Vague prompt: 15+ minutes of back-and-forth
+- ✅ Specific prompt: **30 seconds** - immediate fix
+
+**Quality of Solution:**
+- ❌ Vague: AI might suggest unnecessary refactoring
+- ✅ Specific: **Surgical fix** - exactly what's needed
+
+## 🎓 **Why This Prompt Works**
+
+### **1. Clear Problem Identification**
+```
+✅ Exact error message quoted
+✅ Specific file and line number
+✅ Root cause explained (missing import)
+```
+
+### **2. Specific Solution Steps**
+```
+✅ Exact import statement to add
+✅ File path specified precisely  
+✅ Common patterns provided for reference
+```
+
+### **3. Broader Context**
+```
+✅ Check other related components
+✅ Preventive measures for similar issues
+✅ Verification steps to ensure fix works
+```
+
+### **4. Priority Setting**
+```
+✅ "Priority: Fix immediately" 
+✅ Explains impact (app crashing)
+✅ Focuses AI on the urgent fix
+```
+
+## 💡 **Prompt Pattern Breakdown**
+
+### **Template:**
+```
+Fix the [specific error] in [exact component]:
+
+**Problem:** [exact error message] in [file.tsx]
+
+**Fix needed:**
+1. [Specific action with code example]
+2. [Related checks to prevent similar issues]
+3. [Common pattern for reference]
+4. [Verification steps]
+
+**Priority:** [Why this needs immediate attention]
+```
+
+### **Key Elements:**
+- **🎯 Specificity**: Exact file, line, error message
+- **💻 Code Examples**: Show exactly what to add/change
+- **🔍 Broader Scope**: Check related components too
+- **⚡ Urgency**: Explain why it needs immediate fix
+
+## 🚀 **When to Use This Pattern**
+
+### **Perfect For:**
+- **Runtime errors** with specific error messages
+- **Missing imports** or undefined variables
+- **Component crashes** that break the app
+- **Build failures** with clear error output
+
+### **Adaptation Examples:**
+
+**For Build Errors:**
+```
+Fix the TypeScript build error in [component]:
+**Error:** Property 'x' does not exist on type 'Y'
+**Fix:** Add missing type definition...
+```
+
+**For Style Issues:**
+```
+Fix the CSS layout problem in [component]:
+**Problem:** Cards have different heights causing misalignment
+**Fix:** Set fixed height with proper overflow handling...
+```
+
+## 📈 **Impact on Development Speed**
+
+### **Before Learning This Pattern:**
+- 🐌 **Debug time**: 10-30 minutes per import error
+- 🔄 **Multiple iterations** to get the right fix
+- 😤 **Frustration** with vague responses
+
+### **After Using This Pattern:**
+- ⚡ **Debug time**: 30 seconds to 2 minutes
+- 🎯 **Single iteration** fixes the problem
+- 😊 **Confidence** in AI collaboration
+
+## 🎯 **Key Takeaway**
+
+**The more specific your problem description, the more surgical the AI's solution.**
+
+Instead of letting AI guess what's wrong, **give it the exact error message and desired outcome**. This transforms debugging from a guessing game into a systematic fix.
+
+---
+
+## 🔗 **Related Prompt Patterns**
+
+- **[Component Creation Prompts](component-creation-prompts.md)** - Building new components from scratch
+- **[UI Fix Prompts](ui-improvement-prompts.md)** - Fixing layout and styling issues  
+- **[State Management Prompts](state-management-prompts.md)** - Debugging React state issues
+
+---
+
+**Result: What used to be 15-minute debugging sessions became 30-second fixes with the right prompt specificity.**
